@@ -21,3 +21,11 @@ In Phase 3, I added the get() and add() methods to my SinglyLinkedList class. Th
 In an array-based list, inserting an element in the middle usually takes O(n) time because the elements after the insertion point must be shifted. In a singly linked list, inserting a node takes O(1) time once the correct position is found because only the node references need to change. However, finding that position takes O(n) time, so inserting by index is still O(n) overall.
 
 This showed me that linked lists make it easier to connect and rearrange elements without shifting all the existing data.
+
+## Phase 4: The Curated Library (Sorted Lists)
+
+In Phase 4, I created a SortedLinkedList class that extends my original SinglyLinkedList class. I used a Comparator to automatically organize songs by their titles or artists whenever they are added.
+
+Using a separate SortedLinkedList class makes the program more flexible because I can create different playlists with different sorting rules without changing the original linked list. Instead of manually calling an addSorted() method, the sorted list automatically maintains the correct order.
+
+I tested the program by adding songs in a random order and confirming that both playlists displayed the songs alphabetically according to their sorting rules.

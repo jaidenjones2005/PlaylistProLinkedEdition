@@ -1,39 +1,40 @@
 
-import java.util.Iterator;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
 
-        SinglyLinkedList playlist = new SinglyLinkedList();
+        Comparator<Song> byTitle =
+                Comparator.comparing(Song::getTitle);
 
-        playlist.addLast(new Song("Blinding Lights", "The Weeknd", 200));
-        playlist.addLast(new Song("God's Plan", "Drake", 198));
-        playlist.addLast(new Song("SICKO MODE", "Travis Scott", 312));
+        Comparator<Song> byArtist =
+                Comparator.comparing(Song::getArtist);
 
-        System.out.println("=== Original Playlist ===");
-        playlist.display();
+        SortedLinkedList titlePlaylist =
+                new SortedLinkedList(byTitle);
 
-        System.out.println("\n=== Removing a Song ===");
+        SortedLinkedList artistPlaylist =
+                new SortedLinkedList(byArtist);
 
-        Iterator<Song> iterator = playlist.iterator();
+        Song song1 = new Song("Blinding Lights", "The Weeknd", 200);
+        Song song2 = new Song("God's Plan", "Drake", 198);
+        Song song3 = new Song("SICKO MODE", "Travis Scott", 312);
+        Song song4 = new Song("HUMBLE.", "Kendrick Lamar", 177);
 
-        while (iterator.hasNext()) {
-            Song song = iterator.next();
+        titlePlaylist.addLast(song3);
+        titlePlaylist.addLast(song1);
+        titlePlaylist.addLast(song4);
+        titlePlaylist.addLast(song2);
 
-            if (song.getTitle().equals("God's Plan")) {
-                iterator.remove();
-                System.out.println("Removed: " + song.getTitle());
-            }
-        }
+        artistPlaylist.addLast(song3);
+        artistPlaylist.addLast(song1);
+        artistPlaylist.addLast(song4);
+        artistPlaylist.addLast(song2);
 
-        System.out.println("\n=== Adding a Song at Index 1 ===");
+        System.out.println("=== Sorted by Title ===");
+        titlePlaylist.display();
 
-        playlist.add(1, new Song("HUMBLE.", "Kendrick Lamar", 177));
-
-        playlist.display();
-
-        System.out.println("\n=== Getting Song at Index 1 ===");
-
-        System.out.println(playlist.get(1));
+        System.out.println("\n=== Sorted by Artist ===");
+        artistPlaylist.display();
     }
 }
