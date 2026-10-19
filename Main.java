@@ -1,40 +1,54 @@
 
-import java.util.Comparator;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
 
-        Comparator<Song> byTitle =
-                Comparator.comparing(Song::getTitle);
+        SinglyLinkedList playlist = new SinglyLinkedList();
 
-        Comparator<Song> byArtist =
-                Comparator.comparing(Song::getArtist);
+        System.out.println("=== Test 1: Add to Empty List ===");
+        playlist.addLast(new Song("Blinding Lights", "The Weeknd", 200));
+        playlist.display();
 
-        SortedLinkedList titlePlaylist =
-                new SortedLinkedList(byTitle);
+        System.out.println("\n=== Test 2: Remove First Song ===");
+        Iterator<Song> iterator = playlist.iterator();
 
-        SortedLinkedList artistPlaylist =
-                new SortedLinkedList(byArtist);
+        if (iterator.hasNext()) {
+            iterator.next();
+            iterator.remove();
+        }
 
-        Song song1 = new Song("Blinding Lights", "The Weeknd", 200);
-        Song song2 = new Song("God's Plan", "Drake", 198);
-        Song song3 = new Song("SICKO MODE", "Travis Scott", 312);
-        Song song4 = new Song("HUMBLE.", "Kendrick Lamar", 177);
+        playlist.display();
 
-        titlePlaylist.addLast(song3);
-        titlePlaylist.addLast(song1);
-        titlePlaylist.addLast(song4);
-        titlePlaylist.addLast(song2);
+        System.out.println("\n=== Test 3: Remove Last Song ===");
+        playlist.addLast(new Song("God's Plan", "Drake", 198));
+        playlist.addLast(new Song("SICKO MODE", "Travis Scott", 312));
 
-        artistPlaylist.addLast(song3);
-        artistPlaylist.addLast(song1);
-        artistPlaylist.addLast(song4);
-        artistPlaylist.addLast(song2);
+        iterator = playlist.iterator();
 
-        System.out.println("=== Sorted by Title ===");
-        titlePlaylist.display();
+        while (iterator.hasNext()) {
+            Song song = iterator.next();
 
-        System.out.println("\n=== Sorted by Artist ===");
-        artistPlaylist.display();
+            if (!iterator.hasNext()) {
+                iterator.remove();
+                System.out.println("Removed: " + song.getTitle());
+            }
+        }
+
+        playlist.display();
+
+        System.out.println("\n=== Test 4: Insert at Index 0 ===");
+        playlist.add(0, new Song("HUMBLE.", "Kendrick Lamar", 177));
+        playlist.display();
+
+        System.out.println("\n=== Test 5: Invalid Index ===");
+
+        try {
+            playlist.get(99);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Correctly caught invalid index.");
+        }
+
+        System.out.println("\n=== All Tests Complete ===");
     }
 }

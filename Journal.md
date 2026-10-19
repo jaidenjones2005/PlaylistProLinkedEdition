@@ -29,3 +29,11 @@ In Phase 4, I created a SortedLinkedList class that extends my original SinglyLi
 Using a separate SortedLinkedList class makes the program more flexible because I can create different playlists with different sorting rules without changing the original linked list. Instead of manually calling an addSorted() method, the sorted list automatically maintains the correct order.
 
 I tested the program by adding songs in a random order and confirming that both playlists displayed the songs alphabetically according to their sorting rules.
+
+## Phase 5: Validation & Reflection
+
+In Phase 5, I tested my linked list with several edge cases to make sure it worked correctly. I tested adding a song to an empty list, removing the first and last songs, inserting a song at index 0, and handling an invalid index.
+
+During development, one issue I encountered was having methods outside the SinglyLinkedList class, which caused compilation errors. I corrected this by restoring the class structure and placing the methods inside it.
+
+I also reviewed how the head and next references are updated when songs are inserted or removed. This helped me better understand how linked lists manage their elements without using arrays. Testing these edge cases showed me why pointer management is important for preventing errors and maintaining the correct order of songs.
