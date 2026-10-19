@@ -14,3 +14,10 @@ When remove() is called, the node containing the song is disconnected from the l
 
 The iterator keeps track of the current node, the previous node, and the last returned node so it can remove songs without losing its position in the playlist. I tested this by removing a song and confirming it no longer appeared in the playlist.
 
+## Phase 3: The DJ's Precision (Positional Insertion)
+
+In Phase 3, I added the get() and add() methods to my SinglyLinkedList class. These methods allow me to retrieve songs and insert new songs at specific positions in the playlist. I tested the methods by inserting a new song in the middle of the list and retrieving it using its index.
+
+In an array-based list, inserting an element in the middle usually takes O(n) time because the elements after the insertion point must be shifted. In a singly linked list, inserting a node takes O(1) time once the correct position is found because only the node references need to change. However, finding that position takes O(n) time, so inserting by index is still O(n) overall.
+
+This showed me that linked lists make it easier to connect and rearrange elements without shifting all the existing data.

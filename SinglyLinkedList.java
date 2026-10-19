@@ -100,4 +100,55 @@ public class SinglyLinkedList implements Iterable<Song> {
             }
         };
     }
+
+    public Song get(int index) {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+
+        Node current = head;
+        int position = 0;
+
+        while (current != null) {
+            if (position == index) {
+                return current.data;
+            }
+
+            current = current.next;
+            position++;
+        }
+
+        throw new IndexOutOfBoundsException("Invalid index: " + index);
+    }
+
+    public void add(int index, Song song) {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+
+        Node newNode = new Node(song);
+
+        if (index == 0) {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+
+        Node current = head;
+
+        for (int i = 0; i < index - 1; i++) {
+            if (current == null) {
+                throw new IndexOutOfBoundsException("Invalid index: " + index);
+            }
+
+            current = current.next;
+        }
+
+        if (current == null) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+
+        newNode.next = current.next;
+        current.next = newNode;
+    }
 }
